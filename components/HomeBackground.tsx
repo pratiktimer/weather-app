@@ -6,6 +6,8 @@ const HomeBackground = () => {
     const dimensions = useWindowDimensions();
     const { width, height } = dimensions;
     const myStyle = styles(dimensions);
+    const smokeHeight = height * 0.6;
+    const smokeOffsetY = height * 0.4;
     return (
         <>
             <Canvas style={{ flex: 1 }}>
@@ -22,7 +24,9 @@ const HomeBackground = () => {
                 resizeMode="cover"
                 style={{ height: "100%" }}
             >
-
+                <Canvas style={{ height: smokeHeight, ...StyleSheet.absoluteFillObject, top: smokeOffsetY }}>
+                    <Rect x={0} y={0} width={width} height={smokeHeight}></Rect>
+                </Canvas>
                 <Image source={require("../assets/home/House.png")}
                     resizeMode="cover"
                     style={myStyle.houseImage} />
