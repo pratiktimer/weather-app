@@ -1,35 +1,52 @@
-import { Image, ImageBackground, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
-import React from 'react'
-import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia'
+import { Image, ImageBackground, StyleSheet, useWindowDimensions } from 'react-native';
+import React from 'react';
+import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 
 const HomeBackground = () => {
-    const { width, height } = useWindowDimensions()
+    const { width, height } = useWindowDimensions();
+
     return (
         <>
-            <Canvas style={{ flex: 1 }}>
+            {/* Gradient background */}
+            <Canvas style={StyleSheet.absoluteFill}>
                 <Rect x={0} y={0} width={width} height={height}>
                     <LinearGradient
                         start={vec(0, 0)}
                         end={vec(width, height)}
-                        colors={['#2E335A', '#1c1b33']}
+                        colors={['#2E335A', '#1C1B33']}
                     />
                 </Rect>
             </Canvas>
+
+            {/* Main background image */}
             <ImageBackground
-                source={require("../assets/home/Background.png")}
+                source={require('../assets/home/Background.png')}
                 resizeMode="cover"
-                style={{ height: "100%" }}
+                style={[StyleSheet.absoluteFill, styles.background]}
             >
-
-                <Image source={require("../assets/home/House.png")}
-                    resizeMode="cover"
-                    style={{ width: width, height: height, ...StyleSheet.absoluteFillObject, top: 304 }} />
-
+                {/* Foreground house image */}
+                <Image
+                    source={require('../assets/home/House.png')}
+                    resizeMode="contain"
+                    style={[
+                        styles.house,
+                        { width: width * 1.2, height: height * 0.5 },
+                    ]}
+                />
             </ImageBackground>
         </>
-    )
-}
+    );
+};
 
-export default HomeBackground
+export default HomeBackground;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    background: {
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    house: {
+        position: 'absolute',
+        bottom: '10%',
+    },
+});
