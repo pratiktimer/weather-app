@@ -26,7 +26,14 @@ const HomeBackground = () => {
                 style={{ height: "100%" }}
             >
                 <Canvas style={{ height: smokeHeight, ...StyleSheet.absoluteFillObject, top: smokeOffsetY }}>
-                    <Rect x={0} y={0} width={width} height={smokeHeight}></Rect>
+                    <Rect x={0} y={0} width={width} height={smokeHeight}>
+                        <LinearGradient
+                            start={vec(width / 2, 0)}
+                            end={vec(width / 2, smokeHeight)}
+                            colors={['rgba(58,63,84,0)', 'rgba(58,63,64,1)']}
+                            positions={[-0.02, 0.54]}
+                        />
+                    </Rect>
                 </Canvas>
                 <Image source={require("../assets/home/House.png")}
                     resizeMode="cover"
