@@ -1,9 +1,10 @@
 import { Image, ImageBackground, StyleSheet, Text, useWindowDimensions, View, ScaledSize } from 'react-native'
 import React from 'react'
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia'
+import useApplicationDimensions from '../hooks/useApplicationDimensions';
 
 const HomeBackground = () => {
-    const dimensions = useWindowDimensions();
+    const dimensions = useApplicationDimensions();
     const { width, height } = dimensions;
     const myStyle = styles(dimensions);
     const smokeHeight = height * 0.6;
