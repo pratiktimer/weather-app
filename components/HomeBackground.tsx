@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
+import { Image, ImageBackground, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import React from 'react'
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia'
 
@@ -21,6 +21,9 @@ const HomeBackground = () => {
                 style={{ height: "100%" }}
             >
 
+                <Image source={require("../assets/home/House.png")}
+                    resizeMode="cover"
+                    style={{ width: width, height: height, ...StyleSheet.absoluteFillObject, top: 304 }} />
 
             </ImageBackground>
         </>
