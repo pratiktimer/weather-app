@@ -11,8 +11,9 @@ import {
 
 interface CircleButtonProps {
     radius: number;
+    pressed: Boolean;
 }
-const CircleButton = ({ radius, }: CircleButtonProps) => {
+const CircleButton = ({ radius, pressed }: CircleButtonProps) => {
     const diameter = radius * 2;
     return (
         <Canvas style={{ width: diameter, height: diameter }}>
@@ -21,8 +22,8 @@ const CircleButton = ({ radius, }: CircleButtonProps) => {
                     start={vec(0, 0)}
                     end={vec(diameter, diameter)}
                     colors={[
-                        "#F5F5F9",
-                        "#DADFE7",
+                        pressed ? "#BBBFC7" : "#F5F5F9",
+                        pressed ? "#FFFFFF" : "#DADFE7",
                     ]}
                 />
                 <Shadow dx={1} dy={1} blur={0.5} color={"white"} inner />
