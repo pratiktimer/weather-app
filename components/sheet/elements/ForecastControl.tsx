@@ -5,7 +5,6 @@ const ForecastControl = () => {
   return (
     <View
       style={{
-        backgroundColor: "red",
         flexDirection: "row",
         justifyContent: "space-between",
         paddingHorizontal: 32,

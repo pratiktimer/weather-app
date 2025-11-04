@@ -5,6 +5,8 @@ import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import ForecastSheetBackground from "./ForecastSheetBackground";
 import useApplicationDimensions from "../../hooks/useApplicationDimensions";
 import ForecastControl from "./elements/ForecastControl";
+import { Separators } from "react-native/types_generated";
+import Seperator from "./elements/Seperator";
 
 const ForecastSheet = () => {
   const { width, height } = useApplicationDimensions();
@@ -41,6 +43,7 @@ const ForecastSheet = () => {
       <BottomSheetView style={styles.contentContainer}>
         <>
           <ForecastControl />
+          <Seperator width={width} height={3} />
         </>
       </BottomSheetView>
     </BottomSheet>
