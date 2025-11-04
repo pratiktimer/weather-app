@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Weather } from "../../models/Weather";
 import { DEGREE_SYMBOL } from "../../utils/Constants";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface WeatherInfoProps {
   weather: Weather;
@@ -9,6 +10,8 @@ interface WeatherInfoProps {
 
 const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   const { city, temperature, condition, high, low } = weather;
+  const { top } = useSafeAreaInsets();
+  const weatherInfoMargin = top + 51;
   return (
     <View>
       <Text style={styles.cityText}>{city}</Text>
