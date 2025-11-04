@@ -13,7 +13,7 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   const { top } = useSafeAreaInsets();
   const weatherInfoMargin = top + 51;
   return (
-    <View>
+    <View style={{ marginTop: weatherInfoMargin, alignItems: "center" }}>
       <Text style={styles.cityText}>{city}</Text>
       <Text style={styles.temperatureText}>{`${temperature}°`}</Text>
       <Text style={styles.conditionText}>{condition}</Text>
@@ -28,4 +28,29 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
 
 export default WeatherInfo;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  cityText: {
+    fontFamily: "SF-Regular",
+    color: "white",
+    fontSize: 32,
+    lineHeight: 41,
+  },
+  temperatureText: {
+    fontFamily: "SF-Thin",
+    color: "white",
+    fontSize: 96,
+    lineHeight: 96,
+  },
+  conditionText: {
+    fontFamily: "SF-Semibold",
+    color: "rgba(235, 235, 245, 0.6)",
+    fontSize: 20,
+    lineHeight: 20,
+  },
+  minMaxText: {
+    fontFamily: "SF-Semibold",
+    color: "white",
+    fontSize: 20,
+    lineHeight: 20,
+  },
+});

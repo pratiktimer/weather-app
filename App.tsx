@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { Canvas, LinearGradient, Rect, vec } from "@shopify/react-native-skia";
 import HomeBackground from "./components/HomeBackground";
 import WeatherTabBar from "./components/tabbar/WeatherTabBar";
 import WeatherInfo from "./components/section/WeatherInfo";
@@ -14,7 +13,7 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     "SF-Thin": require("./assets/fonts/SF-Pro-Display-Thin.otf"),
     "SF-Regular": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
-    "SF-Bold": require("./assets/fonts/SF-Pro-Display-Bold.otf"),
+    "SF-Bold": require("./assets/fonts/SF-Pro-Display-Semibold.otf"),
   });
   const onLayoutRottView = useCallback(async () => {
     if (fontsLoaded) {
@@ -25,7 +24,7 @@ export default function App() {
     return null;
   }
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider onLayout={onLayoutRottView}>
       <HomeBackground />
       <WeatherInfo weather={currentWeather} />
       <WeatherTabBar />
