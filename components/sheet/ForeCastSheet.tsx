@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import ForecastSheetBackground from "./ForecastSheetBackground";
 import useApplicationDimensions from "../../hooks/useApplicationDimensions";
+import ForecastControl from "./elements/ForecastControl";
 
 const ForecastSheet = () => {
   const { width, height } = useApplicationDimensions();
@@ -38,7 +39,9 @@ const ForecastSheet = () => {
       onChange={handleSheetChanges}
     >
       <BottomSheetView style={styles.contentContainer}>
-        <Text>Awesome 🎉</Text>
+        <>
+          <ForecastControl />
+        </>
       </BottomSheetView>
     </BottomSheet>
   );
