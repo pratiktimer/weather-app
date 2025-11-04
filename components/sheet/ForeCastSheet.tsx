@@ -41,10 +41,8 @@ const ForecastSheet = () => {
       onChange={handleSheetChanges}
     >
       <BottomSheetView style={styles.contentContainer}>
-        <>
-          <ForecastControl />
-          <Seperator width={width} height={3} />
-        </>
+        <ForecastControl />
+        <Seperator width={width} height={3} />
       </BottomSheetView>
     </BottomSheet>
   );
@@ -57,6 +55,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
+    padding: 36,
     alignItems: "center",
   },
 });
