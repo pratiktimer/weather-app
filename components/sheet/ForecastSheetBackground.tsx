@@ -6,6 +6,7 @@ import {
   RoundedRect,
   vec,
 } from "@shopify/react-native-skia";
+import { BlurView } from "expo-blur";
 interface ForecastSheetBackgroundProps {
   width: number;
   height: number;
@@ -17,7 +18,15 @@ const ForecastSheetBackground = ({
   cornerRadius,
 }: ForecastSheetBackgroundProps) => {
   return (
-    <View style={{ ...StyleSheet.absoluteFillObject }}>
+    <BlurView
+      style={{
+        ...StyleSheet.absoluteFillObject,
+        borderRadius: cornerRadius,
+        overflow: "hidden",
+      }}
+      intensity={50}
+      tint="dark"
+    >
       <Canvas style={{ flex: 1 }}>
         <RoundedRect x={0} y={0} width={width} height={height} r={cornerRadius}>
           <LinearGradient
@@ -28,7 +37,7 @@ const ForecastSheetBackground = ({
           />
         </RoundedRect>
       </Canvas>
-    </View>
+    </BlurView>
   );
 };
 
