@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import HomeBackground from '../components/HomeBackground'
-import WeatherInfo from '../components/section/WeatherInfo'
-import ForecastSheet from '../components/sheet/ForeCastSheet'
-import WeatherTabBar from '../components/tabbar/WeatherTabBar'
-import { currentWeather } from '../data/CurrentWeather'
-import { ForecastSheetProvider } from '../context/ForecastSheetContext'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import HomeBackground from "../components/HomeBackground";
+import WeatherInfo from "../components/section/WeatherInfo";
+import WeatherTabBar from "../components/tabbar/WeatherTabBar";
+import { currentWeather } from "../data/CurrentWeather";
+import { ForecastSheetProvider } from "../context/ForecastSheetContext";
+import ForecastSheet from "../components/sheet/ForeCastSheet";
 
 const Home = () => {
     return (
@@ -15,9 +15,9 @@ const Home = () => {
             <ForecastSheet />
             <WeatherTabBar />
         </ForecastSheetProvider>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

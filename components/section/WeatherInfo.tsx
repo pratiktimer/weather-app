@@ -1,20 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Weather } from "../../models/Weather";
 import { DEGREE_SYMBOL } from "../../utils/Constants";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Animated, { Extrapolation, interpolate, interpolateColor, useAnimatedStyle } from "react-native-reanimated";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  interpolateColor,
+  useAnimatedStyle,
+} from "react-native-reanimated";
 import { useForecastSheetPosition } from "../../context/ForecastSheetContext";
 
 interface WeatherInfoProps {
   weather: Weather;
 }
-
 const WeatherInfo = ({ weather }: WeatherInfoProps) => {
   const { city, temperature, condition, high, low } = weather;
   const { top } = useSafeAreaInsets();
-  const weatherInfoMargin = top + 51;
   const topMargin = 51;
+  const weatherInfoMargin = top + topMargin;
   const animatedPosition = useForecastSheetPosition();
   const animatedViewStyle = useAnimatedStyle(() => {
     return {
@@ -101,11 +105,7 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
           </Animated.Text>
         </Animated.View>
 
-        <Animated.Text
-          style={[styles.conditionText, animatedConditionTxtStyle]}
-        >
-          {condition}
-        </Animated.Text>
+        <Animated.Text style={[styles.conditionText, animatedConditionTxtStyle]}>{condition}</Animated.Text>
       </Animated.View>
       <Animated.Text style={[styles.minMaxText, animatedMinMaxTxtStyles]}>
         H:{high}
@@ -115,7 +115,6 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
     </Animated.View>
   );
 };
-
 
 export default WeatherInfo;
 

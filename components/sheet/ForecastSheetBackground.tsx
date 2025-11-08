@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { use } from "react";
+import React from "react";
 import {
   Canvas,
   LinearGradient,
@@ -20,29 +20,28 @@ const ForecastSheetBackground = ({
   height,
   cornerRadius,
 }: ForecastSheetBackgroundProps) => {
-  const borderPath = `M 0 ${cornerRadius}
+  const borderPath=`M 0 ${cornerRadius}
                     A ${cornerRadius} ${cornerRadius} 0 0 1 ${cornerRadius} 0
-                    H ${width - cornerRadius}
+                    H ${width-cornerRadius}
                     A ${cornerRadius} ${cornerRadius} 0 0 1 ${width} ${cornerRadius}`;
-
+  
   const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
   const animatedPosition = useForecastSheetPosition();
-  const blurViewStyle = useAnimatedStyle(() => {
+  const blurViewStyles = useAnimatedStyle(()=>{
     return {
-      backgroundColor: interpolateColor(animatedPosition.value,
-        [0, 1],
-        ["transparent", "#422E5A"
-        ])
+      backgroundColor:interpolateColor(animatedPosition.value,[0,0.5],[
+        'transparent','#422E5A'
+      ])
     }
   })
-
-  return (
+  
+                    return (
     <AnimatedBlurView
       style={[{
         ...StyleSheet.absoluteFillObject,
         borderRadius: cornerRadius,
         overflow: "hidden",
-      }, blurViewStyle]}
+      },blurViewStyles]}
       intensity={50}
       tint="dark"
     >
@@ -51,23 +50,20 @@ const ForecastSheetBackground = ({
           <LinearGradient
             start={vec(0, 0)}
             end={vec(width, height)}
-            colors={["rgba(46, 51, 90, 0.26)", "rgba(28, 57, 51, 0.26)"]}
+            colors={["rgba(46,51,90,0.26)", "rgba(28,57,51,0.26)"]}
             positions={[-0.04, 0.95]}
           />
         </RoundedRect>
         <Path
           path={borderPath}
-          style={"stroke"}
+          style={'stroke'}
           strokeWidth={2}
-          color={"white"}
-        >
-          <LinearGradient
-            start={vec(width / 2, 0)}
-            end={vec(width / 2, cornerRadius)}
-            colors={["white", "transparent"]}
-
-          />
-        </Path>
+          color={'white'}>
+              <LinearGradient
+                start={vec(width/2,0)}
+                end={vec(width/2,cornerRadius)}
+                colors={['white','transparent']}/>
+          </Path>
       </Canvas>
     </AnimatedBlurView>
   );

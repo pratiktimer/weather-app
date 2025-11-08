@@ -4,7 +4,7 @@ import { Forecast, ForecastType, WeatherType } from "../models/Weather";
 const hour = 3600000; // one hour in milliseconds
 export const hourly: Forecast[] = [
   {
-    date: new Date(Date.now() - hour),
+    date: new Date(Date.now() - hour ),
     weather: WeatherType.Sunny,
     probability: 30,
     temperature: 19,
@@ -142,72 +142,3 @@ export const weekly: Forecast[] = [
     icon: require("../assets/forecast/rain.png"),
   },
 ];
-export const ForecastList: Forecast[] = [
-  {
-    date: new Date(Date.now()),
-    weather: WeatherType.Rainy,
-    probability: 0,
-    temperature: 19,
-    high: 24,
-    low: 18,
-    location: "Montreal, Canada",
-    type: ForecastType.Weekly,
-    icon: require("../assets/forecast/rain_large.png"),
-  },
-  {
-    date: new Date(Date.now()),
-    weather: WeatherType.Windy,
-    probability: 0,
-    temperature: 20,
-    high: 21,
-    low: -19,
-    location: "Toronto, Canada",
-    type: ForecastType.Weekly,
-    icon: require("../assets/forecast/wind_large.png"),
-  },
-  {
-    date: new Date(Date.now()),
-    weather: WeatherType.Showers,
-    probability: 0,
-    temperature: 13,
-    high: 16,
-    low: 8,
-    location: "Tokyo, Japan",
-    type: ForecastType.Weekly,
-    icon: require("../assets/forecast/cloudy_large.png"),
-  },
-  {
-    date: new Date(Date.now()),
-    weather: WeatherType.Tornado,
-    probability: 0,
-    temperature: 23,
-    high: 26,
-    low: 16,
-    location: "Tennessee, United States",
-    type: ForecastType.Weekly,
-    icon: require("../assets/forecast/tornado_large.png"),
-  },
-  {
-    date: new Date(Date.now()),
-    weather: WeatherType.Cloudy,
-    probability: 0,
-    temperature: 31,
-    high: 36,
-    low: 26,
-    location: "Singapore, Singapore",
-    type: ForecastType.Weekly,
-    icon: require("../assets/forecast/rain_large.png"),
-  },
-  {
-    date: new Date(Date.now()),
-    weather: WeatherType.Rainy,
-    probability: 0,
-    temperature: 23,
-    high: 26,
-    low: 16,
-    location: "Taipei, Taiwan",
-    type: ForecastType.Weekly,
-    icon: require("../assets/forecast/rain_large.png"),
-  }
-
-]

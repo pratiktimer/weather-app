@@ -18,7 +18,7 @@ interface ForecastControlProps {
   onPress: (forecastType: ForecastType) => void;
 }
 const ForecastControl = ({ onPress }: ForecastControlProps) => {
-  const { width } = useApplicationDimensions();
+  const {width} = useApplicationDimensions();
   const [textWidth, setTextWidth] = useState(0);
   const onTextLayout = (event: LayoutChangeEvent) => {
     setTextWidth(event.nativeEvent.layout.width);
@@ -33,12 +33,12 @@ const ForecastControl = ({ onPress }: ForecastControlProps) => {
     };
   });
   const onForecastPress = (type: ForecastType) => {
-    if (type === ForecastType.Weekly) {
-      segmentTranslateX.value = withTiming(width - textWidth - spacingX * 2, {
-        duration: 1000
+    if(type===ForecastType.Weekly){
+      segmentTranslateX.value = withTiming(width- textWidth - spacingX*2,{
+        duration:1000
       })
-    } else {
-      segmentTranslateX.value = withTiming(0, { duration: 1000 });
+    }else{
+      segmentTranslateX.value = withTiming(0,{duration:1000});
     }
     onPress(type);
   };
