@@ -2,6 +2,8 @@ import { Image, ImageBackground, StyleSheet, Text, useWindowDimensions, View, Sc
 import React from 'react'
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia'
 import useApplicationDimensions from '../hooks/useApplicationDimensions';
+import { useForecastSheetPosition } from '../context/ForecastSheetContext';
+import Animated, { interpolate, useAnimatedReaction, useAnimatedStyle } from 'react-native-reanimated';
 
 const HomeBackground = () => {
     const dimensions = useApplicationDimensions();
@@ -9,6 +11,20 @@ const HomeBackground = () => {
     const myStyle = styles(dimensions);
     const smokeHeight = height * 0.6;
     const smokeOffsetY = height * 0.4;
+    const animatedPosition = useForecastSheetPosition();
+    const AnimatedImgBkg = Animated.createAnimatedComponent(ImageBackground);
+    const AnimatedCanvas = Animated.createAnimatedComponent(Canvas);
+
+    const animatedImgBkgStyles = useAnimatedStyle(() => {
+        return {
+            transform: [
+                {
+                    translateY: interpolate(animatedPosition.value, [0, 1], [0, -height])
+                }
+            ]
+        }
+    });
+
     return (
         <View style={{ ...StyleSheet.absoluteFillObject }}>
             <Canvas style={{ flex: 1 }}>
@@ -20,10 +36,10 @@ const HomeBackground = () => {
                     />
                 </Rect>
             </Canvas>
-            <ImageBackground
+            <AnimatedImgBkg
                 source={require("../assets/home/Background.png")}
                 resizeMode="cover"
-                style={{ height: "100%" }}
+                style={[{ height: "100%" }, animatedImgBkgStyles]}
             >
                 <Canvas style={{ height: smokeHeight, ...StyleSheet.absoluteFillObject, top: smokeOffsetY }}>
                     <Rect x={0} y={0} width={width} height={smokeHeight}>
@@ -39,7 +55,7 @@ const HomeBackground = () => {
                     resizeMode="cover"
                     style={myStyle.houseImage} />
 
-            </ImageBackground>
+            </AnimatedImgBkg>
         </View>
     )
 };

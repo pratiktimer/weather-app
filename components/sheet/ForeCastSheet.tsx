@@ -17,12 +17,17 @@ import FeelsLikeWidget from "../forecast/widgets/FeelsLikeWidget";
 import HumidityWidget from "../forecast/widgets/HumidityWidget";
 import VisibilityWidget from "../forecast/widgets/VisibilityWidget";
 import PressureWidget from "../forecast/widgets/PressureWidget";
+import { useAnimatedReaction, useSharedValue } from "react-native-reanimated";
+import { useForecastSheetPosition } from "../../context/ForecastSheetContext";
 
 const ForecastSheet = () => {
   const { width, height } = useApplicationDimensions();
   const smalLWidgetSize = width / 2 - 20;
   const snapPoints = ["38.5%", "83%"];
   const firstSnapPoint = height * (parseFloat(snapPoints[0]) / 100);
+  const secondSnapPoint = height * (parseFloat(snapPoints[1]) / 100);
+  const minY = height - secondSnapPoint;
+  const maxY = height - firstSnapPoint;
   const cornRadius = 44;
   const capsuleRadius = 30;
   const capsuleHeight = height * 0.17;
@@ -30,6 +35,12 @@ const ForecastSheet = () => {
   const [selectedForecastType, setSelectedForecastType] =
     useState<ForecastType>(ForecastType.Hourly);
 
+  const currentPosition = useSharedValue(0);
+  const animatedPosition = useForecastSheetPosition();
+  const normalizePosition = (position: number) => {
+    'worklet';
+    return ((position - maxY) / (maxY - minY)) * -1;
+  }
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -38,11 +49,19 @@ const ForecastSheet = () => {
     console.log("handleSheetChanges", index);
   }, []);
 
+  useAnimatedReaction(() => {
+    return currentPosition.value
+  }, (cv) => {
+    animatedPosition.value = (normalizePosition(cv));
+  })
+
   // renders
   return (
     <BottomSheet
       ref={bottomSheetRef}
       snapPoints={snapPoints}
+      animatedPosition={currentPosition}
+      animateOnMount={false}
       handleIndicatorStyle={{
         width: 48,
         height: 6,
