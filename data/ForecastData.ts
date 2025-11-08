@@ -4,7 +4,7 @@ import { Forecast, ForecastType, WeatherType } from "../models/Weather";
 const hour = 3600000; // one hour in milliseconds
 export const hourly: Forecast[] = [
   {
-    date: new Date(Date.now() - hour ),
+    date: new Date(Date.now() - hour),
     weather: WeatherType.Sunny,
     probability: 30,
     temperature: 19,
@@ -142,7 +142,7 @@ export const weekly: Forecast[] = [
     icon: require("../assets/forecast/rain.png"),
   },
 ];
-export const ForecastList:Forecast[] = [
+export const ForecastList: Forecast[] = [
   {
     date: new Date(Date.now()),
     weather: WeatherType.Rainy,

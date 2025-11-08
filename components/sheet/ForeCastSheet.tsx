@@ -1,12 +1,10 @@
 import React, { useCallback, useMemo, useRef } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import ForecastSheetBackground from "./ForecastSheetBackground";
 import useApplicationDimensions from "../../hooks/useApplicationDimensions";
 import ForecastControl from "./elements/ForecastControl";
 import Seperator from "./elements/Seperator";
-import ForecastCapsule from "../forecast/ForecastCapsule";
 import { weekly } from "../../data/ForecastData";
 import ForecastScroll from "../forecast/ForecastScroll";
 

@@ -16,11 +16,12 @@ interface ForecastCapsuleProps {
 const ForecastCapsule = ({ forecast, width, height, radius }: ForecastCapsuleProps) => {
     const { date, icon, probability, temperature } = forecast
     const timeToDisplay = convertDateTo12HrFormat(date)
-
+    const capsuleOpacity = timeToDisplay.toLocaleLowerCase() === 'now' ? 1 : 0.2;
+    const probabilityOpacity = probability > 0 ? 1 : 0;
     return (
         <View style={{ width: width, height: height }}>
             <Canvas style={{ ...StyleSheet.absoluteFillObject }} >
-                <RoundedRect x={0} y={0} width={width} height={height} r={radius} color="rgba(72, 49, 157,1)" >
+                <RoundedRect x={0} y={0} width={width} height={height} r={radius} color={`rgba(72, 49, 157,${capsuleOpacity})`} >
                     <Shadow dx={1}
                         dy={1}
                         blur={0}
@@ -33,7 +34,7 @@ const ForecastCapsule = ({ forecast, width, height, radius }: ForecastCapsulePro
                 <Text style={styles.timeText}>{timeToDisplay}</Text>
                 <View>
                     <Image source={icon} style={{ width: width / 2, height: width / 2 }} />
-                    <Text style={styles.probabilityText}>{probability}%</Text>
+                    <Text style={[styles.probabilityText, { opacity: probabilityOpacity }]}>{probability}%</Text>
                 </View>
                 <Text style={styles.temperatureText}>{temperature}{DEGREE_SYMBOL}</Text>
             </View>
