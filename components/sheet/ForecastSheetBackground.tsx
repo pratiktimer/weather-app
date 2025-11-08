@@ -19,12 +19,9 @@ const ForecastSheetBackground = ({
   cornerRadius,
 }: ForecastSheetBackgroundProps) => {
   const borderPath = `M 0 ${cornerRadius}
-  A ${cornerRadius} ${cornerRadius} 0 0 1 ${cornerRadius} 0
-  L ${width - cornerRadius} 0
-  A ${cornerRadius} ${cornerRadius} 0 0 1 ${width} ${cornerRadius}
-  L ${width} ${height}
-  L 0 ${height}
-  Z`;
+                    A ${cornerRadius} ${cornerRadius} 0 0 1 ${cornerRadius} 0
+                    H ${width - cornerRadius}
+                    A ${cornerRadius} ${cornerRadius} 0 0 1 ${width} ${cornerRadius}`;
   return (
     <BlurView
       style={{
@@ -54,7 +51,7 @@ const ForecastSheetBackground = ({
             start={vec(width / 2, 0)}
             end={vec(width / 2, cornerRadius)}
             colors={["white", "transparent"]}
-            positions={[-0.04, 0.95]}
+
           />
         </Path>
       </Canvas>
