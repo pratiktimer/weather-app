@@ -20,7 +20,7 @@ const ForecastControl = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          paddingHorizontal: 32,
+          paddingHorizontal: spacingX,
           width: "100%",
         }}
       >

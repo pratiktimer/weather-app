@@ -5,14 +5,19 @@ import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import ForecastSheetBackground from "./ForecastSheetBackground";
 import useApplicationDimensions from "../../hooks/useApplicationDimensions";
 import ForecastControl from "./elements/ForecastControl";
-import { Separators } from "react-native/types_generated";
 import Seperator from "./elements/Seperator";
+import ForecastCapsule from "../forecast/ForecastCapsule";
+import { weekly } from "../../data/ForecastData";
 
 const ForecastSheet = () => {
   const { width, height } = useApplicationDimensions();
   const snapPoints = ["38.5%", "83%"];
   const firstSnapPoint = height * (parseFloat(snapPoints[0]) / 100);
   const cornRadius = 44;
+  const capsuleRadius = 30;
+  const capsuleHeight = height * 0.17;
+  const capsuleWidth = width * 0.15;
+
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -40,9 +45,10 @@ const ForecastSheet = () => {
       ref={bottomSheetRef}
       onChange={handleSheetChanges}
     >
-      <BottomSheetView style={styles.contentContainer}>
+      <BottomSheetView >
         <ForecastControl />
         <Seperator width={width} height={3} />
+        <ForecastCapsule forecast={weekly[0]} width={capsuleWidth} height={capsuleHeight} radius={capsuleRadius} />
       </BottomSheetView>
     </BottomSheet>
   );
