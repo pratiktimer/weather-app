@@ -8,6 +8,7 @@ import ForecastControl from "./elements/ForecastControl";
 import Seperator from "./elements/Seperator";
 import ForecastCapsule from "../forecast/ForecastCapsule";
 import { weekly } from "../../data/ForecastData";
+import ForecastScroll from "../forecast/ForecastScroll";
 
 const ForecastSheet = () => {
   const { width, height } = useApplicationDimensions();
@@ -48,7 +49,7 @@ const ForecastSheet = () => {
       <BottomSheetView >
         <ForecastControl />
         <Seperator width={width} height={3} />
-        <ForecastCapsule forecast={weekly[0]} width={capsuleWidth} height={capsuleHeight} radius={capsuleRadius} />
+        <ForecastScroll forecasts={weekly} capsuleWidth={capsuleWidth} capsuleHeight={capsuleHeight} capsuleRadius={capsuleRadius} />
       </BottomSheetView>
     </BottomSheet>
   );
