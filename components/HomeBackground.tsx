@@ -3,7 +3,7 @@ import React from 'react'
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia'
 import useApplicationDimensions from '../hooks/useApplicationDimensions';
 import { useForecastSheetPosition } from '../context/ForecastSheetContext';
-import Animated, { interpolate, useAnimatedReaction, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { Extrapolation, interpolate, interpolateColor, useAnimatedReaction, useAnimatedStyle, useDerivedValue, useSharedValue } from 'react-native-reanimated';
 
 const HomeBackground = () => {
     const dimensions = useApplicationDimensions();
@@ -14,20 +14,37 @@ const HomeBackground = () => {
     const animatedPosition = useForecastSheetPosition();
     const AnimatedImgBkg = Animated.createAnimatedComponent(ImageBackground);
     const AnimatedCanvas = Animated.createAnimatedComponent(Canvas);
+    const leftBkgColor = useSharedValue('#2E335A');
+    const rightBkgColor = useSharedValue('#1c1b33');
+    const bkgColors = useDerivedValue(() => {
+
+        leftBkgColor.value = interpolateColor(animatedPosition.value,
+            [0, 1],
+            ['#2E335A', '#4B506E']
+        );
+
+        return [leftBkgColor.value];
+    });
 
     const animatedImgBkgStyles = useAnimatedStyle(() => {
         return {
             transform: [
                 {
-                    translateY: interpolate(animatedPosition.value, [0, 1], [0, -height])
+                    translateY: interpolate(animatedPosition.value, [0, 1], [0, -height], Extrapolation.CLAMP)
                 }
             ]
         }
     });
 
+    const animatedSmokeStyles = useAnimatedStyle(() => {
+        return {
+            opacity: interpolate(animatedPosition.value, [0, 1], [1, 0], Extrapolation.CLAMP)
+        }
+    });
+
     return (
         <View style={{ ...StyleSheet.absoluteFillObject }}>
-            <Canvas style={{ flex: 1 }}>
+            <Canvas style={{ ...StyleSheet.absoluteFillObject }}>
                 <Rect x={0} y={0} width={width} height={height}>
                     <LinearGradient
                         start={vec(0, 0)}
@@ -41,7 +58,7 @@ const HomeBackground = () => {
                 resizeMode="cover"
                 style={[{ height: "100%" }, animatedImgBkgStyles]}
             >
-                <Canvas style={{ height: smokeHeight, ...StyleSheet.absoluteFillObject, top: smokeOffsetY }}>
+                <AnimatedCanvas style={[{ height: smokeHeight, ...StyleSheet.absoluteFillObject, top: smokeOffsetY }, animatedSmokeStyles]}>
                     <Rect x={0} y={0} width={width} height={smokeHeight}>
                         <LinearGradient
                             start={vec(width / 2, 0)}
@@ -50,7 +67,7 @@ const HomeBackground = () => {
                             positions={[-0.02, 0.54]}
                         />
                     </Rect>
-                </Canvas>
+                </AnimatedCanvas>
                 <Image source={require("../assets/home/House.png")}
                     resizeMode="cover"
                     style={myStyle.houseImage} />
