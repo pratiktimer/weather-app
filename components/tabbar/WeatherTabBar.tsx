@@ -39,8 +39,9 @@ const WeatherTabBar = () => {
         intensity={50}
         tint="dark"
         style={{
-          height: TabbarHeight,
           ...StyleSheet.absoluteFillObject,
+          height: TabbarHeight,
+         
         }}
       >
         <ArcComponent height={TabbarHeight} width={width} />

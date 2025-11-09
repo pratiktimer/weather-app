@@ -1,21 +1,23 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useReducer } from "react";
 import HomeBackground from "../components/HomeBackground";
 import WeatherInfo from "../components/section/WeatherInfo";
 import WeatherTabBar from "../components/tabbar/WeatherTabBar";
 import { currentWeather } from "../data/CurrentWeather";
 import { ForecastSheetProvider } from "../context/ForecastSheetContext";
+import { createStackNavigator } from "@react-navigation/stack";
 import ForecastSheet from "../components/sheet/ForeCastSheet";
 
 const Home = () => {
-    return (
-        <ForecastSheetProvider>
-            <HomeBackground />
-            <WeatherInfo weather={currentWeather} />
-            <ForecastSheet />
-            <WeatherTabBar />
-        </ForecastSheetProvider>
-    );
+  return (
+
+    <ForecastSheetProvider>
+      <HomeBackground />
+      <WeatherInfo />
+      <ForecastSheet />
+      <WeatherTabBar />
+    </ForecastSheetProvider>
+  );
 };
 
 export default Home;

@@ -56,7 +56,7 @@ const ForecastSheetBackground = ({
         </RoundedRect>
         <Path
           path={borderPath}
-          style={'stroke'}
+          style={'stroke'} 
           strokeWidth={2}
           color={'white'}>
               <LinearGradient

@@ -71,7 +71,7 @@ const ForecastControl = ({ onPress }: ForecastControlProps) => {
           <LinearGradient
             start={vec(0, 0)}
             end={vec(textWidth, 0)}
-            colors={[
+            colors={[ 
               "rgba(147,112,177,0)",
               "rgba(147,112,177,1)",
               "rgba(147,112,177,0)",

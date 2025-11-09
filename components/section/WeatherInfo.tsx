@@ -10,12 +10,13 @@ import Animated, {
   useAnimatedStyle,
 } from "react-native-reanimated";
 import { useForecastSheetPosition } from "../../context/ForecastSheetContext";
+import { useWeatherData } from "../../context/WeatherDataContext";
 
-interface WeatherInfoProps {
-  weather: Weather;
-}
-const WeatherInfo = ({ weather }: WeatherInfoProps) => {
-  const { city, temperature, condition, high, low } = weather;
+const WeatherInfo = () => {
+  const { weatherData } = useWeatherData();
+  const {
+    currentWeather: { city, temperature, condition, high, low },
+  } = weatherData;
   const { top } = useSafeAreaInsets();
   const topMargin = 51;
   const weatherInfoMargin = top + topMargin;
@@ -105,7 +106,11 @@ const WeatherInfo = ({ weather }: WeatherInfoProps) => {
           </Animated.Text>
         </Animated.View>
 
-        <Animated.Text style={[styles.conditionText, animatedConditionTxtStyle]}>{condition}</Animated.Text>
+        <Animated.Text
+          style={[styles.conditionText, animatedConditionTxtStyle]}
+        >
+          {condition}
+        </Animated.Text>
       </Animated.View>
       <Animated.Text style={[styles.minMaxText, animatedMinMaxTxtStyles]}>
         H:{high}

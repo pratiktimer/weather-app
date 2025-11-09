@@ -79,7 +79,7 @@ const HomeBackground = () => {
   });
   return (
     <View style={{ ...StyleSheet.absoluteFillObject }}>
-      <BackgroundGradient colors={bkgColors} />
+      <BackgroundGradient colors={bkgColors}/>
       <AnimatedImgBkg
         source={require("../assets/home/Background.png")}
         resizeMode="cover"
